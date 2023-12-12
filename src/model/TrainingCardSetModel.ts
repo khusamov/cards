@@ -18,7 +18,7 @@ export class TrainingCardSetModel implements ITrainingCardSet {
 	 * Название набора.
 	 * Например 'Великие географические открытия'. Можно, например, использовать главы учебника.
 	 */
-	@observable public title: string = ''
+	@observable public accessor title: string = ''
 
 	/**
 	 * Массив карточек в наборе.

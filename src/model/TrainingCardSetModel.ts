@@ -23,5 +23,5 @@ export class TrainingCardSetModel implements ITrainingCardSet {
 	/**
 	 * Массив карточек в наборе.
 	 */
-	@observable public readonly cards: ITrainingCard[] = []
+	public readonly cards: ITrainingCard[] = []
 }

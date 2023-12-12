@@ -1,4 +1,16 @@
-# React + TypeScript + Vite
+Инструкции для разработчика
+===========================
+
+Полезные ссылки
+---------------
+
+https://vitejs.dev/
+https://mobx.js.org/
+https://mui.com/joy-ui/getting-started/
+https://mui.com/material-ui/material-icons/
+
+Рекомендации от Vite
+--------------------
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

@@ -1,5 +1,6 @@
 {
   "name": "khusamov-training-cards",
+  "description": "Карточки для обучения (вопрос - ответ на обратной стороне)",
   "private": true,
   "version": "0.0.0",
   "type": "module",

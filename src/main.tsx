@@ -5,6 +5,10 @@ import './index.scss'
 import {App} from './App.tsx'
 import {ApplicationTrainingCardsModel} from './model/ApplicationTrainingCardsModel.ts'
 import {TrainingCardSetModel} from './model/TrainingCardSetModel.ts'
+import {version, description} from '../package.json'
+
+console.log(`Программа: ${description}`)
+console.log(`Версия программы: ${version}`)
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 const applicationModel = new ApplicationTrainingCardsModel

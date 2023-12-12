@@ -10,7 +10,7 @@ interface ITrainingCardSetTableProps {
 
 export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTableProps) => {
 	return (
-		<Table hoverRow sx={{'& thead th:nth-child(1)': {width: 40}, '--TableRow-hoverBackground': '#f3f3f3'}}>
+		<Table hoverRow sx={{'& thead th:nth-of-type(1)': {width: 40}, '--TableRow-hoverBackground': '#f3f3f3'}}>
 			<thead>
 				<tr>
 					<th><Checkbox sx={{verticalAlign: 'sub'}}/></th>

@@ -15,8 +15,8 @@ export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTablePr
 				<tr>
 					<th><Checkbox sx={{verticalAlign: 'sub'}}/></th>
 					<th>№</th>
-					<th>Название</th>
 					<th>Категория</th>
+					<th>Название</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,8 +26,8 @@ export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTablePr
 							<tr key={index}>
 								<td><Checkbox sx={{verticalAlign: 'sub'}}/></td>
 								<td>{index + 1}</td>
+								<td>Категория</td>
 								<td>{cardSet.title}</td>
-								<td>fdsf</td>
 							</tr>
 						)
 					)

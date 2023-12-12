@@ -1,10 +1,11 @@
 import {observer} from 'mobx-react-lite'
-import {ChangeEventHandler, useState} from 'react'
-import {Box, Button, CssBaseline, CssVarsProvider, Grid, Input, Stack, Typography} from '@mui/joy'
+import {Box, CssBaseline, CssVarsProvider, Grid, Typography} from '@mui/joy'
 import './App.scss'
+import {FormAddingNewCardSet} from './components/FormAddingNewCardSet.tsx'
 import {TrainingCardSetTable} from './components/TrainingCardSetTable.tsx'
 import {ApplicationTrainingCardsModel} from './model/ApplicationTrainingCardsModel.ts'
-import {TrainingCardSetModel} from './model/TrainingCardSetModel.ts'
+import type {ITrainingCardSet} from './model/interfaces/ITrainingCardSet.ts'
+
 
 interface IApplicationProps {
 	applicationModel: ApplicationTrainingCardsModel
@@ -12,21 +13,8 @@ interface IApplicationProps {
 
 export const App = observer(
 	({applicationModel}: IApplicationProps) => {
-		const [title, setTitle] = useState<string | null>(null)
-
-		const onTitleInputChange: ChangeEventHandler<HTMLInputElement> = event => {
-			const rawValue = event.target.value.trim()
-			const value = rawValue === '' ? null : rawValue
-			setTitle(value)
-		}
-
-		const onAddNewCardSetButtonClick = () => {
-			if (title !== null) {
-				const trainingCardSet = new TrainingCardSetModel
-				trainingCardSet.title = title
-				applicationModel.pushTrainingCardSet(trainingCardSet)
-				setTitle(null)
-			}
+		const onAddNewCardSet = (trainingCardSet: ITrainingCardSet) => {
+			applicationModel.pushTrainingCardSet(trainingCardSet)
 		}
 
 		return (
@@ -35,13 +23,7 @@ export const App = observer(
 				<Box padding={2}>
 					<Grid container spacing={2}>
 						<Grid xs={2}>
-							<Stack direction='column' spacing={2}>
-								<Typography level='body-lg'>Новый набор карточек</Typography>
-								<Input placeholder='Название набора карточек' value={title ?? ''} onChange={onTitleInputChange}/>
-								<Box>
-									<Button disabled={title === null} onClick={onAddNewCardSetButtonClick}>Добавить новый набор карточек</Button>
-								</Box>
-							</Stack>
+							<FormAddingNewCardSet onAddNewCardSet={onAddNewCardSet}/>
 						</Grid>
 						<Grid xs={10}>
 							{

@@ -2565,6 +2565,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.4"
     mobx: "npm:^6.12.0"
+    mobx-react-lite: "npm:^4.0.5"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     sass: "npm:^1.69.5"
@@ -2789,6 +2790,23 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: d71b8dcd4b5af2fe13ecf3bd24070263489404fe216488c5ba7e38ece1f54daf219e72a833a3a2dc404331e870e9f44963a33399589490956bff003a3404d3b2
+  languageName: node
+  linkType: hard
+
+"mobx-react-lite@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "mobx-react-lite@npm:4.0.5"
+  dependencies:
+    use-sync-external-store: "npm:^1.2.0"
+  peerDependencies:
+    mobx: ^6.9.0
+    react: ^16.8.0 || ^17 || ^18
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: bcd4c6977b244bc83fd2ce0568e07b3ea8980729f50ec7520b1f0c2f98c0c312156fb018c41174893e3fff69c5a72f15733d9ef392c41eb29a4c7b35d2633484
   languageName: node
   linkType: hard
 
@@ -3578,6 +3596,15 @@ __metadata:
   dependencies:
     punycode: "npm:^2.1.0"
   checksum: b271ca7e3d46b7160222e3afa3e531505161c9a4e097febae9664e4b59912f4cbe94861361a4175edac3a03fee99d91e44b6a58c17a634bc5a664b19fc76fbcb
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: a676216affc203876bd47981103f201f28c2731361bb186367e12d287a7566763213a8816910c6eb88265eccd4c230426eb783d64c373c4a180905be8820ed8e
   languageName: node
   linkType: hard
 

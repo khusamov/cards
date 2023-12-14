@@ -15,4 +15,6 @@ export class ApplicationTrainingCardsModel {
 	@action public pushTrainingCardSet(trainingCardSet: TrainingCardSetModel) {
 		this.trainingCardSets.push(trainingCardSet)
 	}
+
+	currentTrainingCardSet: TrainingCardSetModel | null = null
 }

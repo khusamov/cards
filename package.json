@@ -22,6 +22,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.23.6",
     "@mui/icons-material": "^5.15.0",
+    "@mui/material": "^5.15.0",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@types/uuid": "^9",

@@ -9,6 +9,7 @@ import {version, description} from '../package.json'
 
 console.log(`Программа: ${description}`)
 console.log(`Версия программы: ${version}`)
+console.log(`Дата сборки: ${BUILD_DATE}`)
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 const applicationModel = new ApplicationTrainingCardsModel

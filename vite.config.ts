@@ -7,6 +7,10 @@ export default defineConfig({
 	build: {
 		outDir: 'docs'
 	},
+	define: {
+		// https://stackoverflow.com/questions/75319602/exposing-build-date-with-vite-react
+		BUILD_DATE: JSON.stringify(new Date().toLocaleDateString())
+	},
 	plugins: [
 		react({
 			babel: {

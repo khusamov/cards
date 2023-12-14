@@ -98,6 +98,7 @@ export const App = observer(
 						<TabPanel value='about'>
 							<div>Программа: {description}</div>
 							<div>Версия программы: {version}</div>
+							<div>Дата сборки: {BUILD_DATE}</div>
 						</TabPanel>
 					</Box>
 				</Tabs>

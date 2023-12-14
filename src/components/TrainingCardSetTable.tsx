@@ -17,6 +17,7 @@ export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTablePr
 					<th>№</th>
 					<th>Категория</th>
 					<th>Название</th>
+					<th>Карточек в колоде</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +29,7 @@ export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTablePr
 								<td>{index + 1}</td>
 								<td>Категория</td>
 								<td>{cardSet.title}</td>
+								<td>{cardSet.cards.length > 0 && cardSet.cards.length}</td>
 							</tr>
 						)
 					)

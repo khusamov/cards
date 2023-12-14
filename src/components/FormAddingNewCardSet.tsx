@@ -34,12 +34,12 @@ export const FormAddingNewCardSet = ({onAddNewCardSet}: IFormAddingNewCardSetPro
 
 	return (
 		<Stack direction='column' spacing={2}>
-			<Typography level='body-lg'>Новый набор карточек</Typography>
-			<Select onChange={onCardCategorySelectChange}>
+			<Typography level='body-lg'>Новая колода карточек</Typography>
+			<Select placeholder='Выберите категорию' onChange={onCardCategorySelectChange}>
 				<Option value={1}>История</Option>
 				<Option value={2}>Алгебра</Option>
 			</Select>
-			<Input placeholder='Название набора карточек' value={title ?? ''} onChange={onTitleInputChange}/>
+			<Input placeholder='Название колоды карточек' value={title ?? ''} onChange={onTitleInputChange}/>
 			<Box>
 				<Button disabled={title === null} onClick={onAddNewCardSetButtonClick}>Добавить</Button>
 			</Box>

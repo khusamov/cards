@@ -2,8 +2,10 @@ import {Option, Select} from '@mui/joy'
 import type {SelectOwnProps} from '@mui/joy/Select/SelectProps'
 import {ICategory} from '../model/interfaces/ICategory.ts'
 
-interface ICategorySelectProps {
-	onSelectChange: SelectOwnProps<string, false>['onChange']
+export type TOnCategorySelectChangeFunction = Required<SelectOwnProps<string, false>>['onChange']
+
+export interface ICategorySelectProps {
+	onSelectChange: TOnCategorySelectChangeFunction
 	categoryArray: ICategory[]
 }
 

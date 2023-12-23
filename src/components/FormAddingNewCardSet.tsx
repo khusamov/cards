@@ -1,10 +1,9 @@
 import {Box, Button, Input, Stack, Typography} from '@mui/joy'
-import type {SelectOwnProps} from '@mui/joy/Select/SelectProps'
 import {ChangeEventHandler, useState} from 'react'
 import type {ICardDeck} from '../model/interfaces/ICardDeck.ts'
 import {CardDeck} from '../model/CardDeck.ts'
 import {ITrainingFile} from '../model/interfaces/ITrainingFile.ts'
-import {CategorySelect} from './CategorySelect.tsx'
+import {CategorySelect, TOnCategorySelectChangeFunction} from './CategorySelect.tsx'
 
 interface IFormAddingNewCardSetProps {
 	onAddNewCardSet: (trainingCardSet: ICardDeck) => void
@@ -29,7 +28,7 @@ export const FormAddingNewCardSet = ({onAddNewCardSet, trainingFile}: IFormAddin
 		}
 	}
 
-	const onCardCategorySelectChange: SelectOwnProps<string, false>['onChange'] = (
+	const onCardCategorySelectChange: TOnCategorySelectChangeFunction = (
 		(_, value) => {
 			console.log(value)
 		}

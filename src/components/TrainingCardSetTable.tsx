@@ -1,11 +1,11 @@
 import {Checkbox, Table} from '@mui/joy'
-import {TrainingCardSetModel} from '../model/TrainingCardSetModel.ts'
+import {CardDeck} from '../model/CardDeck.ts'
 
 // TODO Таблицу доделать по образцу:
 // https://mui.com/joy-ui/react-table/#sort-and-selection
 
 interface ITrainingCardSetTableProps {
-	trainingCardSets: TrainingCardSetModel[]
+	trainingCardSets: CardDeck[]
 }
 
 export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTableProps) => {
@@ -29,7 +29,7 @@ export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTablePr
 								<td>{index + 1}</td>
 								<td>Категория</td>
 								<td>{cardSet.title}</td>
-								<td>{cardSet.cards.length > 0 && cardSet.cards.length}</td>
+								<td>{cardSet.trainingCardArray.length > 0 && cardSet.trainingCardArray.length}</td>
 							</tr>
 						)
 					)

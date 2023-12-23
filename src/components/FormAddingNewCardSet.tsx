@@ -1,14 +1,17 @@
-import {Box, Button, Input, Option, Select, Stack, Typography} from '@mui/joy'
+import {Box, Button, Input, Stack, Typography} from '@mui/joy'
 import type {SelectOwnProps} from '@mui/joy/Select/SelectProps'
 import {ChangeEventHandler, useState} from 'react'
-import type {ITrainingCardSet} from '../model/interfaces/ITrainingCardSet.ts'
-import {TrainingCardSetModel} from '../model/TrainingCardSetModel.ts'
+import type {ICardDeck} from '../model/interfaces/ICardDeck.ts'
+import {CardDeck} from '../model/CardDeck.ts'
+import {ITrainingFile} from '../model/interfaces/ITrainingFile.ts'
+import {CategorySelect} from './CategorySelect.tsx'
 
 interface IFormAddingNewCardSetProps {
-	onAddNewCardSet: (trainingCardSet: ITrainingCardSet) => void
+	onAddNewCardSet: (trainingCardSet: ICardDeck) => void
+	trainingFile: ITrainingFile
 }
 
-export const FormAddingNewCardSet = ({onAddNewCardSet}: IFormAddingNewCardSetProps) => {
+export const FormAddingNewCardSet = ({onAddNewCardSet, trainingFile}: IFormAddingNewCardSetProps) => {
 	const [title, setTitle] = useState<string | null>(null)
 
 	const onTitleInputChange: ChangeEventHandler<HTMLInputElement> = event => {
@@ -19,14 +22,14 @@ export const FormAddingNewCardSet = ({onAddNewCardSet}: IFormAddingNewCardSetPro
 
 	const onAddNewCardSetButtonClick = () => {
 		if (title !== null) {
-			const trainingCardSet = new TrainingCardSetModel
+			const trainingCardSet = new CardDeck
 			trainingCardSet.title = title
 			onAddNewCardSet(trainingCardSet)
 			setTitle(null)
 		}
 	}
 
-	const onCardCategorySelectChange: SelectOwnProps<number, false>['onChange'] = (
+	const onCardCategorySelectChange: SelectOwnProps<string, false>['onChange'] = (
 		(_, value) => {
 			console.log(value)
 		}
@@ -35,10 +38,7 @@ export const FormAddingNewCardSet = ({onAddNewCardSet}: IFormAddingNewCardSetPro
 	return (
 		<Stack direction='column' spacing={2}>
 			<Typography level='body-lg'>Новая колода карточек</Typography>
-			<Select placeholder='Выберите категорию' onChange={onCardCategorySelectChange}>
-				<Option value={1}>История</Option>
-				<Option value={2}>Алгебра</Option>
-			</Select>
+			<CategorySelect onSelectChange={onCardCategorySelectChange} categoryArray={trainingFile.categoryArray}/>
 			<Input placeholder='Название колоды карточек' value={title ?? ''} onChange={onTitleInputChange}/>
 			<Box>
 				<Button disabled={title === null} onClick={onAddNewCardSetButtonClick}>Добавить</Button>

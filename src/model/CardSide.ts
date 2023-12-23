@@ -1,8 +1,8 @@
 import {observable} from 'mobx'
 import {v1} from 'uuid'
-import {ICategory} from './interfaces/ICategory.ts'
+import {ICardSide} from './interfaces/ICardSide.ts'
 
-export class Category implements ICategory {
+export class CardSide implements ICardSide {
 	/**
 	 * Идентификатор категории.
 	 * @type {string}
@@ -10,9 +10,9 @@ export class Category implements ICategory {
 	public readonly uuid: string = v1()
 
 	/**
-	 * Название категории.
+	 * Текст стороны карточки.
 	 * @default ''
 	 * @type {string}
 	 */
-	@observable public accessor title: string = ''
+	@observable public accessor text: string = ''
 }

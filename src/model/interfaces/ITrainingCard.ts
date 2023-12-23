@@ -1,6 +1,22 @@
-import {SideName} from '../types/SideName.ts'
 import {ICardSide} from './ICardSide.ts'
 
+/**
+ * Тренировочная карточка.
+ * Обладает двумя сторонами.
+ */
 export interface ITrainingCard {
-	readonly sides: Map<SideName, ICardSide>
+	/**
+	 * Идентификатор.
+	 */
+	readonly uuid: string
+
+	/**
+	 * Лицевая сторона карточки.
+	 */
+	readonly front: ICardSide
+
+	/**
+	 * Обратная сторона карточки.
+	 */
+	readonly back: ICardSide
 }

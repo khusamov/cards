@@ -1,13 +1,39 @@
 import {ICategory} from './ICategory.ts'
-import {ITrainingCardSet} from './ITrainingCardSet.ts'
+import {ICardDeck} from './ICardDeck.ts'
 
+/**
+ * Файл для хранения категорий и колод карточек.
+ */
 export interface ITrainingFile {
+	/**
+	 * Идентификатор.
+	 */
+	readonly uuid: string
+
 	/**
 	 * Название файла.
 	 */
-	readonly title: string
+	title: string
 
-	categories: ICategory[]
+	/**
+	 * Массив категорий.
+	 */
+	categoryArray: ICategory[]
 
-	trainingCardSets: ITrainingCardSet[]
+	/**
+	 * Массив колод карточек.
+	 */
+	cardDeckArray: ICardDeck[]
+
+	/**
+	 * Добавить колоду карточек.
+	 * @param {ICardDeck} cardDeck
+	 */
+	pushCardDeck(cardDeck: ICardDeck): void
+
+	/**
+	 * Добавить категорию.
+	 * @param {ICategory} category
+	 */
+	pushCategory(category: ICategory): void
 }

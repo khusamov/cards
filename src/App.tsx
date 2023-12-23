@@ -3,8 +3,8 @@ import {Box, CssBaseline, CssVarsProvider, Grid, ListItemDecorator, Tab, TabList
 import './App.scss'
 import {FormAddingNewCardSet} from './components/FormAddingNewCardSet.tsx'
 import {TrainingCardSetTable} from './components/TrainingCardSetTable.tsx'
-import {ApplicationTrainingCardsModel} from './model/ApplicationTrainingCardsModel.ts'
-import type {ITrainingCardSet} from './model/interfaces/ITrainingCardSet.ts'
+import {ITrainingApplication} from './model/interfaces/ITrainingApplication.ts'
+import type {ICardDeck} from './model/interfaces/ICardDeck.ts'
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize'
 import CategoryIcon from '@mui/icons-material/Category'
 import DescriptionIcon from '@mui/icons-material/Description'
@@ -14,13 +14,15 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter'
 import {version, description} from '../package.json'
 
 interface IApplicationProps {
-	applicationModel: ApplicationTrainingCardsModel
+	applicationModel: ITrainingApplication
 }
 
 export const App = observer(
 	({applicationModel}: IApplicationProps) => {
-		const onAddNewCardSet = (trainingCardSet: ITrainingCardSet) => {
-			applicationModel.pushTrainingCardSet(trainingCardSet)
+		const onAddNewCardDeck = (cardDeck: ICardDeck) => {
+			if (applicationModel.current.trainingFile) {
+				applicationModel.current.trainingFile.pushCardDeck(cardDeck)
+			}
 		}
 
 		return (
@@ -75,14 +77,23 @@ export const App = observer(
 						<TabPanel value='decks'>
 							<Grid container spacing={2}>
 								<Grid xs={2}>
-									<FormAddingNewCardSet onAddNewCardSet={onAddNewCardSet}/>
+									{
+										applicationModel.current.trainingFile && (
+											<FormAddingNewCardSet
+												trainingFile={applicationModel.current.trainingFile}
+												onAddNewCardSet={onAddNewCardDeck}
+											/>
+										)
+									}
 								</Grid>
 								<Grid xs={10}>
 									{
-										applicationModel.trainingCardSets.length > 0 && (
+										applicationModel.current.trainingFile && applicationModel.current.trainingFile.cardDeckArray.length > 0 && (
 											<Box>
-												<Typography level='body-lg'>Колоды карточек ({applicationModel.trainingCardSets.length})</Typography>
-												<TrainingCardSetTable trainingCardSets={applicationModel.trainingCardSets}/>
+												<Typography level='body-lg'>
+													Колоды карточек ({applicationModel.current.trainingFile.cardDeckArray.length})
+												</Typography>
+												<TrainingCardSetTable trainingCardSets={applicationModel.current.trainingFile.cardDeckArray}/>
 											</Box>
 										)
 									}

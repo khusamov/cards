@@ -1,5 +1,5 @@
 import {observer} from 'mobx-react-lite'
-import {Box, CssBaseline, CssVarsProvider, Grid, ListItemDecorator, Tab, TabList, TabPanel, Tabs, Typography} from '@mui/joy'
+import {Box, CssBaseline, CssVarsProvider, Grid, ListItemDecorator, Tab, TabList, TabPanel, Tabs} from '@mui/joy'
 import './App.scss'
 import {FormAddingNewCardSet} from './components/FormAddingNewCardSet.tsx'
 import {TrainingCardSetTable} from './components/TrainingCardSetTable.tsx'
@@ -89,12 +89,7 @@ export const App = observer(
 								<Grid xs={10}>
 									{
 										applicationModel.current.trainingFile && applicationModel.current.trainingFile.cardDeckArray.length > 0 && (
-											<Box>
-												<Typography level='body-lg'>
-													Колоды карточек ({applicationModel.current.trainingFile.cardDeckArray.length})
-												</Typography>
-												<TrainingCardSetTable trainingCardSets={applicationModel.current.trainingFile.cardDeckArray}/>
-											</Box>
+											<TrainingCardSetTable trainingCardDeckArray={applicationModel.current.trainingFile.cardDeckArray}/>
 										)
 									}
 								</Grid>

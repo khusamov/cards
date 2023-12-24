@@ -18,7 +18,6 @@ export function createTestingApplicationModel(): ITrainingApplication {
 	if (applicationModel.current.trainingFile) {
 		// Тестовые категории.
 		for (const title of ['История', 'Геометрия', 'Алгебра']) {
-			console.log(title)
 			const category = new Category
 			category.title = title
 			applicationModel.current.trainingFile.pushCategory(category)

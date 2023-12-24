@@ -26,9 +26,13 @@ export function createTestingApplicationModel(): ITrainingApplication {
 
 		// Тестовые карточки.
 		for (let i = 0; i < 10; i++) {
-			const trainingCardSet = new CardDeck
-			trainingCardSet.title = 'title' + 1
-			applicationModel.current.trainingFile.pushCardDeck(trainingCardSet)
+			const trainingCardDeck = new CardDeck
+			const firstCategory = applicationModel.current.trainingFile.categoryArray[0]
+			if (firstCategory) {
+				trainingCardDeck.category = firstCategory
+			}
+			trainingCardDeck.title = 'title' + 1
+			applicationModel.current.trainingFile.pushCardDeck(trainingCardDeck)
 		}
 	}
 

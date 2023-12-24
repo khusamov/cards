@@ -36,13 +36,13 @@ export const TrainingCardSetTable = ({trainingCardSets}: ITrainingCardSetTablePr
 				<tbody>
 					{
 						trainingCardSets.map(
-							(cardSet, index) => (
+							(cardDeck, index) => (
 								<tr key={index}>
 									<td><BodyCheckbox id={index}/></td>
 									<td>{index + 1}</td>
-									<td>Категория</td>
-									<td>{cardSet.title}</td>
-									<td>{cardSet.trainingCardArray.length > 0 && cardSet.trainingCardArray.length}</td>
+									<td>{cardDeck.category.title}</td>
+									<td>{cardDeck.title}</td>
+									<td>{cardDeck.trainingCardArray.length > 0 && cardDeck.trainingCardArray.length}</td>
 								</tr>
 							)
 						)

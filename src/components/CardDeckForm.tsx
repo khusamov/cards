@@ -40,7 +40,7 @@ export const CardDeckForm = ({data, categoryArray, onSubmit}: ICardDeckFormProps
 	return (
 		<Stack direction='column' spacing={2}>
 			<Typography level='body-lg'>{formTitle}</Typography>
-			<CategorySelect category={category} onSelectChange={onCategorySelectChange} categoryArray={categoryArray}/>
+			<CategorySelect category={category} onChange={onCategorySelectChange} categoryArray={categoryArray}/>
 			<Input placeholder='Название колоды карточек' value={title} onChange={onTitleInputChange}/>
 			<Box>
 				<Button disabled={!isValid} onClick={onSubmitButtonClick}>

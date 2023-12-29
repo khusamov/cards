@@ -1,24 +1,26 @@
 import {Option, Select} from '@mui/joy'
-import type {SelectOwnProps} from '@mui/joy/Select/SelectProps'
 import {ICategory} from '../model/interfaces/ICategory.ts'
+import {ArrowSelect} from './ArrowSelect.tsx'
+
+type TSelectChangeProp = Parameters<typeof Select>[0]['onChange']
 
 export interface ICategorySelectProps {
-	onSelectChange: (category: ICategory) => void
+	onChange: (category: ICategory) => void
 	categoryArray: ICategory[]
 	category: ICategory | null
 }
 
-export const CategorySelect = ({onSelectChange, categoryArray, category}: ICategorySelectProps) => {
-	const onSelectChange1: SelectOwnProps<string, false>['onChange'] = (
+export const CategorySelect = ({onChange, categoryArray, category}: ICategorySelectProps) => {
+	const onSelectChange: TSelectChangeProp = (
 		(_event, value) => {
 			const category = categoryArray.find(category => category.uuid === value)
 			if (category) {
-				onSelectChange(category)
+				onChange(category)
 			}
 		}
 	)
 	return (
-		<Select placeholder='Выберите категорию' onChange={onSelectChange1} value={category?.uuid ?? null}>
+		<ArrowSelect placeholder='Выберите категорию' onChange={onSelectChange} value={category?.uuid ?? null}>
 			{
 				categoryArray.map(
 					(category, index) => (
@@ -28,6 +30,6 @@ export const CategorySelect = ({onSelectChange, categoryArray, category}: ICateg
 					)
 				)
 			}
-		</Select>
+		</ArrowSelect>
 	)
 }

@@ -1,111 +1,47 @@
 import {observer} from 'mobx-react-lite'
-import {Box, CssBaseline, CssVarsProvider, Grid, ListItemDecorator, Tab, TabList, TabPanel, Tabs} from '@mui/joy'
-import './App.scss'
-import {CardDeckForm, ICardDeckFormData} from './components/CardDeckForm.tsx'
-import {TrainingCardSetTable} from './components/TrainingCardSetTable.tsx'
-import {CardDeck} from './model/CardDeck.ts'
+import {Box, CssBaseline, CssVarsProvider, ListItemDecorator, Tab, TabList, TabPanel, Tabs} from '@mui/joy'
+import {getPageInfoArray} from './functions/getPageInfoArray.tsx'
+import {IPageInfo} from './interfaces/IPageInfo.ts'
 import {ITrainingApplication} from './model/interfaces/ITrainingApplication.ts'
-import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize'
-import CategoryIcon from '@mui/icons-material/Category'
-import DescriptionIcon from '@mui/icons-material/Description'
-import WidgetsIcon from '@mui/icons-material/Widgets'
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
-import HelpCenterIcon from '@mui/icons-material/HelpCenter'
-import {version, description} from '../package.json'
+import './App.scss'
 
 interface IApplicationProps {
 	applicationModel: ITrainingApplication
 }
 
+const PageTab = ({code, icon, title}: IPageInfo) => (
+	<Tab orientation='vertical' value={code}>
+		<ListItemDecorator>
+			{icon()}
+		</ListItemDecorator>
+		{title}
+	</Tab>
+)
+
+const PageTabPanel = ({code, page}: IPageInfo) => (
+	page && (
+		<TabPanel value={code}>
+			{page()}
+		</TabPanel>
+	)
+)
+
 export const App = observer(
 	({applicationModel}: IApplicationProps) => {
-		const onAddNewCardDeck = (data: ICardDeckFormData) => {
-			if (applicationModel.current.trainingFile) {
-				applicationModel.current.trainingFile.pushCardDeck(new CardDeck(data.title, data.category))
-			}
-		}
-
+		const pageInfoArray = getPageInfoArray(applicationModel)
 		return (
 			<CssVarsProvider>
 				<CssBaseline/>
-				<Tabs defaultValue='decks'>
-					<TabList sx={{'--Icon-fontSize': '2rem'}}>
-						<Tab orientation='vertical' value='files'>
-							<ListItemDecorator>
-								<DescriptionIcon/>
-							</ListItemDecorator>
-							Файлы
-						</Tab>
-						<Tab orientation='vertical' value='categories'>
-							<ListItemDecorator>
-								<CategoryIcon/>
-							</ListItemDecorator>
-							Категории
-						</Tab>
-						<Tab orientation='vertical' value='decks'>
-							<ListItemDecorator>
-								<WidgetsIcon/>
-							</ListItemDecorator>
-							Колоды
-						</Tab>
-						<Tab orientation='vertical' value='cards'>
-							<ListItemDecorator>
-								<DashboardCustomizeIcon/>
-							</ListItemDecorator>
-							Карточки
-						</Tab>
-						<Tab orientation='vertical' value='training'>
-							<ListItemDecorator>
-								<SportsEsportsIcon/>
-							</ListItemDecorator>
-							Тренировка
-						</Tab>
-						<Tab orientation='vertical' value='about'>
-							<ListItemDecorator>
-								<HelpCenterIcon/>
-							</ListItemDecorator>
-							О программе
-						</Tab>
+				<Tabs defaultValue='decks' sx={{display: 'flex', height: '100%', flexDirection: 'column'}}>
+					<TabList sx={{'--Icon-fontSize': '2.3rem'}}>
+						{
+							pageInfoArray.map((pageInfo, index) => <PageTab key={index} {...pageInfo}/>)
+						}
 					</TabList>
-					<Box>
-						<TabPanel value='files'>
-
-						</TabPanel>
-						<TabPanel value='categories'>
-
-						</TabPanel>
-						<TabPanel value='decks'>
-							<Grid container spacing={2}>
-								<Grid xs={2}>
-									{
-										applicationModel.current.trainingFile && (
-											<CardDeckForm
-												categoryArray={applicationModel.current.trainingFile.categoryArray}
-												onSubmit={onAddNewCardDeck}
-											/>
-										)
-									}
-								</Grid>
-								<Grid xs={10}>
-									{
-										applicationModel.current.trainingFile && applicationModel.current.trainingFile.cardDeckArray.length > 0 && (
-											<TrainingCardSetTable trainingCardDeckArray={applicationModel.current.trainingFile.cardDeckArray}/>
-										)
-									}
-								</Grid>
-							</Grid>
-						</TabPanel>
-						<TabPanel value='cards'>
-
-						</TabPanel>
-						<TabPanel value='training'>
-
-						</TabPanel>
-						<TabPanel value='about'>
-							<div>Программа: {description}</div>
-							<div>Версия программы: {version}</div>
-							<div>Дата сборки: {BUILD_DATE}</div>
-						</TabPanel>
+					<Box sx={{flex: 1, overflow: 'auto'}}>
+						{
+							pageInfoArray.map((pageInfo, index) => <PageTabPanel key={index} {...pageInfo}/>)
+						}
 					</Box>
 				</Tabs>
 			</CssVarsProvider>

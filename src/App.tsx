@@ -1,10 +1,10 @@
 import {observer} from 'mobx-react-lite'
 import {Box, CssBaseline, CssVarsProvider, Grid, ListItemDecorator, Tab, TabList, TabPanel, Tabs} from '@mui/joy'
 import './App.scss'
-import {FormAddingNewCardSet} from './components/FormAddingNewCardSet.tsx'
+import {CardDeckForm, ICardDeckFormData} from './components/CardDeckForm.tsx'
 import {TrainingCardSetTable} from './components/TrainingCardSetTable.tsx'
+import {CardDeck} from './model/CardDeck.ts'
 import {ITrainingApplication} from './model/interfaces/ITrainingApplication.ts'
-import type {ICardDeck} from './model/interfaces/ICardDeck.ts'
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize'
 import CategoryIcon from '@mui/icons-material/Category'
 import DescriptionIcon from '@mui/icons-material/Description'
@@ -19,9 +19,9 @@ interface IApplicationProps {
 
 export const App = observer(
 	({applicationModel}: IApplicationProps) => {
-		const onAddNewCardDeck = (cardDeck: ICardDeck) => {
+		const onAddNewCardDeck = (data: ICardDeckFormData) => {
 			if (applicationModel.current.trainingFile) {
-				applicationModel.current.trainingFile.pushCardDeck(cardDeck)
+				applicationModel.current.trainingFile.pushCardDeck(new CardDeck(data.title, data.category))
 			}
 		}
 
@@ -79,9 +79,9 @@ export const App = observer(
 								<Grid xs={2}>
 									{
 										applicationModel.current.trainingFile && (
-											<FormAddingNewCardSet
-												trainingFile={applicationModel.current.trainingFile}
-												onAddNewCardSet={onAddNewCardDeck}
+											<CardDeckForm
+												categoryArray={applicationModel.current.trainingFile.categoryArray}
+												onSubmit={onAddNewCardDeck}
 											/>
 										)
 									}

@@ -14,5 +14,14 @@ export class Category implements ICategory {
 	 * @default ''
 	 * @type {string}
 	 */
-	@observable public accessor title: string = ''
+	@observable public accessor title: string
+
+	/**
+	 * Конструктор категории.
+	 * @param {string} title
+	 */
+	public constructor(title: string) {
+		this.title = title
+	}
+
 }

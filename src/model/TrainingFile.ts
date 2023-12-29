@@ -14,7 +14,7 @@ export class TrainingFile implements ITrainingFile {
 	/**
 	 * Название файла.
 	 */
-	@observable public accessor title: string = ''
+	@observable public accessor title: string
 
 	/**
 	 * Массив категорий.
@@ -25,6 +25,14 @@ export class TrainingFile implements ITrainingFile {
 	 * Массив колод карточек.
 	 */
 	@observable public accessor cardDeckArray: ICardDeck[] = []
+
+	/**
+	 * Конструктор тренировочного файла.
+	 * @param {string} title
+	 */
+	public constructor(title: string) {
+		this.title = title
+	}
 
 	/**
 	 * Добавить колоду карточек.

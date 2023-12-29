@@ -1,12 +1,11 @@
 import {observable} from 'mobx'
 import {v1} from 'uuid'
-import {Category} from './Category.ts'
 import {ICategory} from './interfaces/ICategory.ts'
 import {ITrainingCard} from './interfaces/ITrainingCard.ts'
 import {ICardDeck} from './interfaces/ICardDeck.ts'
 
 /**
- * Набор тренировочных карточек.
+ * Колода тренировочных карточек.
  */
 export class CardDeck implements ICardDeck {
 	/**
@@ -16,19 +15,30 @@ export class CardDeck implements ICardDeck {
 	public readonly uuid: string = v1()
 
 	/**
-	 * Название набора.
+	 * Название колоды.
 	 * Например 'Великие географические открытия'. Можно, например, использовать главы учебника.
 	 */
 	@observable public accessor title: string = ''
 
 	/**
-	 * Категория набора.
+	 * Категория колоды.
 	 * Например история или математика. По сути это название предмета.
 	 */
-	@observable public accessor category: ICategory = new Category
+	@observable public accessor category: ICategory
 
 	/**
-	 * Массив карточек в наборе.
+	 * Массив карточек в колоде.
 	 */
 	@observable public accessor trainingCardArray: ITrainingCard[] = []
+
+	/**
+	 * Конструктор колоды.
+	 * @param title
+	 * @param category
+	 */
+	public constructor(title: string, category: ICategory) {
+		this.title = title
+		this.category = category
+	}
+
 }
